@@ -1,9 +1,9 @@
-from camunda.context import _use_api
+from camunda.context import use_api
 from camunda.models import ProcessDefinitionDiagramDto, ProcessDefinitionDto
 
 
 def get(id: str) -> ProcessDefinitionDto:
-    api = _use_api()
+    api = use_api()
     result = api.get(f"/process-definition/{id}")
     return ProcessDefinitionDto.parse_obj(result)
 
@@ -12,7 +12,7 @@ def get_xml(id: str = None, key: str = None, tenant_id: str = None) -> ProcessDe
     if not id or key:
         raise ValueError("You need to provide either id or key")
 
-    api = _use_api()
+    api = use_api()
 
     if id:
         path = f"/process-definition/{id}/xml"

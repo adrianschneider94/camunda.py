@@ -85,5 +85,5 @@ class Api(object):
 api = Api()
 
 
-def _use_api() -> Api:
+def use_api() -> Api:
     return api
