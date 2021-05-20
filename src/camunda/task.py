@@ -53,7 +53,7 @@ def get_variables(id: str):
 
 def claim(id: str, user_id: str):
     api = use_api()
-    api.post(f"/task/{id}/claim")
+    api.post(f"/task/{id}/claim", data={"userId": user_id})
 
 
 def unclaim(id: str):
