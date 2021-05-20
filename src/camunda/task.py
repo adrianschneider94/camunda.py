@@ -5,7 +5,7 @@ from typing import List, Mapping, Optional
 from uuid import UUID
 
 from camunda.context import use_api
-from camunda.models import CompleteTaskDto, TaskDto, TaskQueryDto, VariableValueDto
+from camunda.models import CompleteTaskDto, IdentityLinkDto, TaskDto, TaskQueryDto, VariableValueDto
 
 TASK_SET_UUID = uuid.UUID("3a8804d3-6111-42b3-920c-405a251c1d44")
 
@@ -64,3 +64,23 @@ def unclaim(id: str):
 def set_assignee(id: str, user_id: str):
     api = use_api()
     api.post(f"/task/{id}/assignee", data={"userId": user_id})
+
+
+def get_identity_links(id: str):
+    api = use_api()
+    result = api.get(f"/task/{id}/identity-links")
+    return [IdentityLinkDto.parse_obj(item) for item in result]
+
+
+# Extra
+def get_candidate_users(id: str):
+    identity_links = get_identity_links(id)
+    candidate_users = [identity_link.user_id for identity_link in identity_links if identity_link.type == "candidate"]
+    return candidate_users
+
+
+# Extra
+def get_candidate_groups(id: str):
+    identity_links = get_identity_links(id)
+    candidate_groups = [identity_link.group_id for identity_link in identity_links if identity_link.type == "candidate"]
+    return candidate_groups
