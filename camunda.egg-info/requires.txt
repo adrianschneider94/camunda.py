@@ -1,0 +1,7 @@
+requests
+pydantic
+
+[dev]
+jsonpatch
+datamodel-code-generator
+lxml

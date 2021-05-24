@@ -27,7 +27,7 @@ patched_api = patch.apply(api)
 generate(
     input_=json.dumps(patched_api),
     input_file_type=InputFileType.OpenAPI,
-    output=Path("./src/camunda/models.py"),
+    output=Path("src/camunda/models/generated.py"),
     allow_population_by_field_name=True,
     snake_case_field=True,
     use_generic_container_types=True,

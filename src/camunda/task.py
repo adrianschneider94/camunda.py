@@ -28,8 +28,7 @@ def get_list(query: TaskQueryDto = TaskQueryDto()) -> List[TaskDto]:
 
     data = query.dict(exclude_unset=True, by_alias=True)
     result = api.post("/task", data=data)
-    if result:
-        return [TaskDto.parse_obj(task) for task in result]
+    return [TaskDto.parse_obj(task) for task in result]
 
 
 def get(id: str) -> TaskDto:
@@ -70,17 +69,3 @@ def get_identity_links(id: str):
     api = use_api()
     result = api.get(f"/task/{id}/identity-links")
     return [IdentityLinkDto.parse_obj(item) for item in result]
-
-
-# Extra
-def get_candidate_users(id: str):
-    identity_links = get_identity_links(id)
-    candidate_users = [identity_link.user_id for identity_link in identity_links if identity_link.type == "candidate"]
-    return candidate_users
-
-
-# Extra
-def get_candidate_groups(id: str):
-    identity_links = get_identity_links(id)
-    candidate_groups = [identity_link.group_id for identity_link in identity_links if identity_link.type == "candidate"]
-    return candidate_groups

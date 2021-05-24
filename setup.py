@@ -16,7 +16,8 @@ setup(
     extras_require={
         'dev': [
             'jsonpatch',
-            'datamodel-code-generator'
+            'datamodel-code-generator',
+            'lxml'
         ]
     }
 

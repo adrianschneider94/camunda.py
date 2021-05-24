@@ -1,0 +1,16 @@
+README.md
+setup.py
+./src/camunda/__init__.py
+./src/camunda/context.py
+./src/camunda/message.py
+./src/camunda/process_definition.py
+./src/camunda/process_instance.py
+./src/camunda/task.py
+./src/camunda/models/__init__.py
+./src/camunda/models/generated.py
+./src/camunda/models/variables.py
+camunda.egg-info/PKG-INFO
+camunda.egg-info/SOURCES.txt
+camunda.egg-info/dependency_links.txt
+camunda.egg-info/requires.txt
+camunda.egg-info/top_level.txt
